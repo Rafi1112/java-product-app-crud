@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+	
+	<script type="text/javascript" th:inline="javascript"
+		th:fragment="dashboard">
+	
+			$(document).ready(function() {
+				$("#dashboardMenu").removeClass("active open")
+					.addClass("active open");
+			});
+	
+	</script>
+	
+	<script type="text/javascript" th:inline="javascript"
+		th:fragment="product-list">
+	
+	document.onreadystatechange = function(){
+		
+    	$("#navigationProduct").removeClass(".active open").addClass(
+		"active open");
+		
+    	$("#listProductMenu").removeClass(".active open").addClass(
+				"active open");
+	}
+	
+	</script>
+
+</body>
+</html>

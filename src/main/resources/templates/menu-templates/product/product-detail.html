@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="no-js ">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>Product Detail</title>
+<!-- Favicon-->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+<link th:href="@{/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css}" rel="stylesheet" />
+<!-- Bootstrap Select Css -->
+<link rel="stylesheet" th:href="@{/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css}" />
+<link rel="stylesheet" th:href="@{/plugins/bootstrap-select/css/bootstrap-select.css}" />
+<link rel="stylesheet" th:href="@{/plugins/multi-select/css/multi-select.css}">
+<link rel="stylesheet" th:href="@{/plugins/dropify/css/dropify.min.css}">
+<!-- Custom Css -->
+<link rel="stylesheet" th:href="@{/css/style.min.css}">
+</head>
+
+<body class="theme-green">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><img class="zmdi-hc-spin" th:src="@{/images/loader.svg}" width="48" height="48" alt="Aero"></div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+
+
+<!-- Right Icon menu Sidebar -->
+<div class="navbar-right" th:replace="menu-templates/fragment/navbar-right :: template-navbar-right"></div>
+
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar" th:replace="menu-templates/fragment/navbar-left :: template-navbar-left"></aside>
+
+<!-- Right Sidebar -->
+<aside id="rightsidebar" class="right-sidebar" th:replace="menu-templates/fragment/navbar-right :: template-navbar-right-sidebar"></aside>
+
+<!-- Main Content -->
+<section class="content">
+    <div class="body_scroll">
+    
+    <!-- header -->
+<div class="block-header" th:replace="menu-templates/fragment/header :: template-header-product-add"></div>
+
+		<!-- Items -->
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        
+	                        <div class="header">
+	                            <h2><strong>Product</strong> Update</h2>
+	                        </div>
+	                        <div class="body">
+	                        
+	                        	<!-- Alert if any Some Error -->
+								 <div class="alert alert-danger" th:if="${err}">
+								 	<div class="alert-icon">
+								    	<i class="zmdi zmdi-block"></i>
+								    </div>
+		                         	<strong>Oh Snap!!</strong><span th:text="${err}"></span>
+		                         	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								      <span aria-hidden="true">
+								      	<i class="zmdi zmdi-close"></i>
+								      </span>
+								    </button>
+		                         </div>
+	                        
+	                            <form th:action="@{/menu/product/save}" id="form_validation" method="post" th:object="${product}">
+	                            
+		                            <label for="codeProduct">Product Code</label>
+	                                <div class="form-group form-float">
+	                                 <input type="hidden" class="form-control" id="id" required th:field ="*{id}">
+	                                    <input type="text" class="form-control" placeholder="Use Generate Button, to Fill this with Unique Code !" id="productCode" readonly="readonly" required th:field ="*{productCode}">
+	                                    <span th:if="${product.id == null}"><button type="button" hidden="" class="btn btn-success btn-round" data-type="success" th:onclick="generateCode()">Generate Code</button></span> 
+	                                    <span th:unless="${product.id != null}"><button type="button" class="btn btn-success btn-round" data-type="success" th:onclick="generateCode()">Generate Code</button></span> 
+	                                </div>
+	                                
+	                                <label for="productName">Product Name</label>
+	                                <div class="form-group form-float">
+	                                    <input type="text" class="form-control" placeholder="Product Name" id="productName" required th:field ="*{productName}">
+	                                </div>
+	                                
+	                                <label for="productCategory">Product Category</label>
+	                                <div class="form-group form-float">
+	                                	<select class="form-control show-tick ms" th:field ="*{productCategory}">
+	                                        <option value="Makanan">Makanan</option>
+	                                        <option value="Minuman">Minuman</option>
+	                                        <option value="Kesehatan">Kesehatan</option>
+	                                        <option value="Barang">Barang</option>
+	                                    </select>
+	                                </div>
+	                                
+	                                <label for="productQuantity">Product Quantity</label>
+	                                <div class="form-group form-float">
+	                                    <input type="number" class="form-control" placeholder="Product Quantity" id="productQuantity" required th:field ="*{productQuantity}">
+	                                </div>
+	                                
+	                                <label for="productPrice">Product Price</label>
+	                                <div class="form-group form-float">
+	                                    <input type="number" class="form-control" placeholder="Product Price" id="productPrice" required th:field ="*{productPrice}">
+	                                </div>
+	                                
+	                                 <label for="productExpired">Product Expired</label>
+	                                <div class="form-group form-float">
+	                                	<input type="date" id="date" class="form-control datetimepicker" placeholder="" required="required" th:field ="*{productExpired}">
+	                                </div>
+	                                
+	                                <button type="submit" class="btn btn-raised btn-primary waves-effect">Submit</button>
+	                                <a th:href="@{/menu/product}" class="btn btn-raised btn-danger waves-effect">Back</a>
+                            </form>
+	                            
+	                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+</body>
+<!-- Jquery Core Js --> 
+<script th:src="@{/bundles/libscripts.bundle.js}"></script> <!-- Lib Scripts Plugin Js --> 
+<script th:src="@{/bundles/vendorscripts.bundle.js}"></script> <!-- Lib Scripts Plugin Js --> 
+<script th:src="@{/bundles/mainscripts.bundle.js}"></script>
+
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script> <!-- SweetAlert Plugin Js --> 
+<script th:src="@{/js/pages/ui/sweetalert.js}"></script>
+
+
+<script type="text/javascript" th:inline="javascript">
+
+function Random() {
+	return Math.floor(100000000 + Math.random() * 10000000000);
+}
+
+function generateCode() {
+	  document.getElementById('productCode').value = Random();
+}
+
+  	var validatePc = document.getElementById('productCode').value;
+
+	$("#form_validation").submit(function() {
+		if ( validatePc == '' ) {
+			alert("Product Code can't be null!!");
+			return false;
+		}
+	});
+	
+</script>
+
+<div th:replace="menu-templates/fragment/selected-navbar-left :: product-list">Selected Menu</div>
+
+</html>

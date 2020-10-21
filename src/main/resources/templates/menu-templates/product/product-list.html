@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="no-js ">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>Product List</title>
+<!-- Favicon-->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+<!-- Custom Css -->
+<link rel="stylesheet" th:href="@{/css/style.min.css}">
+</head>
+
+<body class="theme-green">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><img class="zmdi-hc-spin" th:src="@{/images/loader.svg}" width="48" height="48" alt="Aero"></div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+
+
+<!-- Right Icon menu Sidebar -->
+<div class="navbar-right" th:replace="menu-templates/fragment/navbar-right :: template-navbar-right"></div>
+
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar" th:replace="menu-templates/fragment/navbar-left :: template-navbar-left"></aside>
+
+<!-- Right Sidebar -->
+<aside id="rightsidebar" class="right-sidebar" th:replace="menu-templates/fragment/navbar-right :: template-navbar-right-sidebar"></aside>
+
+<!-- Main Content -->
+<section class="content">
+    <div class="body_scroll">
+    
+    <!-- header -->
+<div class="block-header" th:replace="menu-templates/fragment/header :: template-header-product"></div>
+
+		<!-- Items -->
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong>Product</strong> list</h2>
+                        </div>
+                        
+						<!-- Alert if success Update/Create Products -->
+						 <div class="alert alert-success" th:if="${success}">
+						 	<div class="alert-icon">
+						    	<i class="zmdi zmdi-thumb-up"></i>
+						    </div>
+                         	<strong>Well done!</strong><span th:text="${success}"></span>
+                         	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						      <span aria-hidden="true">
+						      	<i class="zmdi zmdi-close"></i>
+						      </span>
+						    </button>
+                         </div>
+                         
+                         <!-- Alert if success Deleted Products -->
+						 <div class="alert alert-success" th:if=${delete}>
+						 	<div class="alert-icon">
+						    	<i class="zmdi zmdi-thumb-up"></i>
+						    </div>
+                         	<strong>Well done!</strong> <span th:text="${delete}"></span>
+                         	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						      <span aria-hidden="true">
+						      	<i class="zmdi zmdi-close"></i>
+						      </span>
+						    </button>
+                         </div>
+						
+                         <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Code</th>
+                                            <th>Product Name</th>
+                                            <th>Product Category</th>
+                                            <th>Product Quantity</th>
+                                            <th>Product Price (Rp.)</th>
+                                            <th>Product Expired</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="product : ${listProducts}">
+                                            <td th:text="${product.productCode}"></td>
+                                            <td th:text="${product.productName}"></td>
+                                            <td th:text="${product.productCategory}"></td>
+                                            <td th:text="${product.productQuantity}"></td>
+                                            <td th:text="${product.productPrice}"></td>
+                                            <td th:text="${product.productExpired}"></td>
+                                            <td>
+                                            	<a th:href="@{/menu/product/detail?id=} + ${product.id}" class="btn btn-primary"><i class="zmdi zmdi-edit"></i></a>
+                                            	<a th:href="@{/menu/product/delete?id=} + ${product.id}" class="btn btn-danger"> <i class="zmdi zmdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+</body>
+<!-- Jquery Core Js --> 
+<script th:src="@{/bundles/libscripts.bundle.js}"></script> <!-- Lib Scripts Plugin Js --> 
+<script th:src="@{/bundles/vendorscripts.bundle.js}"></script> <!-- Lib Scripts Plugin Js --> 
+<script th:src="@{/bundles/mainscripts.bundle.js}"></script>
+
+<script th:src="@{/bundles/datatablescripts.bundle.js}"></script>
+<script th:src="@{/plugins/jquery-datatable/buttons/dataTables.buttons.min.js}"></script>
+<script th:src="@{/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js}"></script>
+
+<!-- <script th:src="@{/bundles/mainscripts.bundle.js}"></script>Custom Js  -->
+<script th:src="@{/js/pages/tables/jquery-datatable.js}"></script>
+
+<div th:replace="menu-templates/fragment/selected-navbar-left :: product-list">Selected Menu</div>
+
+</html>

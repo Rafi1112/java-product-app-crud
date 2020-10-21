@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+
+        <div class="block-header" th:fragment="template-header-dashboard">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h2>Dashboard</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Product Manager</a></li>
+                        <li class="breadcrumb-item">Dashboard</li>
+                    </ul>
+                    <button class="btn btn-primary btn-icon mobile_menu" type="button">
+                    	<i class="zmdi zmdi-sort-amount-desc"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="block-header" th:fragment="template-header-product">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h2>Product List</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/}"><i class="zmdi zmdi-shopping-cart"></i> Product Manager </a></li>
+                        <li class="breadcrumb-item">Product</li>
+                        <li class="breadcrumb-item active">List</li>
+                    </ul>
+                    <button class="btn btn-primary btn-icon mobile_menu" type="button">
+                    	<i class="zmdi zmdi-sort-amount-desc"></i>
+                    </button>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">                
+                    <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button">
+                    	<i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                    <a class="btn btn-success btn-sm float-right" th:href="@{/menu/product/detail}"><i class="zmdi zmdi-plus" style="color:white"></i> Tambah Product</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="block-header" th:fragment="template-header-product-add">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h2>Project Detail</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/}"><i class="zmdi zmdi-home"></i> Product Manager </a></li>
+                        <li class="breadcrumb-item">Product</li>
+                        <li class="breadcrumb-item active">Update</li>
+                    </ul>
+                    <button class="btn btn-primary btn-icon mobile_menu" type="button">
+                    	<i class="zmdi zmdi-sort-amount-desc"></i>
+                    </button>
+                </div>
+                
+                <div class="col-lg-5 col-md-6 col-sm-12">          
+                    <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button">
+                    	<i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+</html>
